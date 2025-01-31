@@ -75,7 +75,7 @@ int main(int argc, char **argv)
     if (argc < 2)
         return (0);
     a = stack_init(argc - 1, argv + 1, &data);
-    b = stack_b_init(b, argc - 1);
+    b = stack_b_init(b, 1);
     if (!a || !b)
         return (0);
     if (is_sorted(a))

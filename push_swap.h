@@ -54,6 +54,7 @@ int	ft_index(t_stack *stack, int num);
 int *tab_sort(t_stack *stack, t_data *data);
 void    ft_lstdelone(t_stack **stack);
 t_stack *stack_b_init(t_stack *b, int argc);
+t_stack *get_last(t_stack *stack);
 int	ft_max(t_stack *stack);
 int	ft_min(t_stack *stack);
 
