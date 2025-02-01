@@ -39,6 +39,7 @@ t_stack *stack_init(int argc, char **argv, t_data **data)
         return (NULL);
     stack->num = ft_atoi(argv[0]);
     (*data)->size = argc;
+    printf ("%d-----\n", ((*data)->size));
     stack->next = NULL;
     tmp = stack;
     i = 1;
@@ -52,7 +53,7 @@ t_stack *stack_init(int argc, char **argv, t_data **data)
         tmp->next = NULL;
         i++;
     }
-    (*data)->tab = tab_sort(stack, *data);
+    get_arr(stack, data);
     return (stack);
 }
 void print_stack(t_stack *stack)
@@ -78,6 +79,13 @@ int main(int argc, char **argv)
     b = stack_b_init(b, 1);
     if (!a || !b)
         return (0);
+    print_stack(a);
+    write (1, "----------\n", 11);
+    printf("Array elements: ");
+    for (int i = 0; i < data->size; i++) {
+        printf("%d ", data->tab[i]);
+}
+printf("\n"); // Optional: Add a newline for better formatting
     if (is_sorted(a))
     {
         stack_free(a);
@@ -92,7 +100,7 @@ int main(int argc, char **argv)
     else if (data->size == 5)
         sort_five (&a, &b, data);
     else
-        sort_chunks (&a, &b, data);
+        sort_chunks (&a, &(b->next), data);
     print_stack(a);
     stack_free(a);
     stack_free(b);

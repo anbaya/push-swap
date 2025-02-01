@@ -47,7 +47,6 @@ int	ft_max(t_stack *stack)
 	}
 	return (max);
 }
-
 int	ft_min(t_stack *stack)
 {
 	int		min;

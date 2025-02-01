@@ -1,61 +1,48 @@
 #include "push_swap.h"
 
-int *copy_stack_to_array(t_stack *stack, int size)
+void	ft_easy_sort(t_stack **stack, t_data **data)
 {
-    int *tab;
-    int i = 0;
-    t_stack *head = stack;
+	int	i;
+	int	j;
+	int	tmp;
+	int	size;
 
-    tab = malloc(sizeof(int) * size);
-    if (!tab)
-        return (NULL);
-    while (i < size)
-    {
-        tab[i] = head->num;
-        head = head->next;
-        i++;
-    }
-    return (tab);
+	i = 0;
+	size = ft_lstsize(*stack);
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - 1 - i)
+		{
+			if ((*data)->tab[j] > (*data)->tab[j + 1])
+			{
+				tmp = (*data)->tab[j];
+				(*data)->tab[j] = (*data)->tab[j + 1];
+				(*data)->tab[j + 1] = tmp;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
-// Function to sort the array using Bubble Sort
-void bubble_sort(int *tab, int size)
+void	get_arr(t_stack *stack, t_data **data)
 {
-    int i, j, tmp;
-    int swapped;
+	int		i;
+	int		size;
+	t_stack	*tmp;
 
-    i = 0;
-    while (i < size - 1)
-    {
-        swapped = 0;
-        j = 0;
-        while (j < size - i - 1)
-        {
-            if (tab[j] > tab[j + 1])
-            {
-                tmp = tab[j];
-                tab[j] = tab[j + 1];
-                tab[j + 1] = tmp;
-                swapped = 1;
-            }
-            j++;
-        }
-        if (!swapped) // Exit early if sorted
-            break;
-        i++;
-    }
-}
-
-// Main function that calls both
-int *tab_sort(t_stack *stack, t_data *data)
-{
-    if (!stack || data->size <= 0)
-        return (NULL);
-
-    int *tab = copy_stack_to_array(stack, data->size);
-    if (!tab)
-        return (NULL); // Handle malloc failure
-
-    bubble_sort(tab, data->size);
-    return (tab);
+	i = 0;
+	tmp = stack;
+	size = ft_lstsize(stack);
+	(*data)->tab = malloc(size * sizeof(int));
+	if (!(*data)->tab)
+		return ;
+	while (tmp)
+	{
+		(*data)->tab[i] = tmp->num;
+		tmp = tmp->next;
+		i++;
+	}
+	ft_easy_sort(&stack, data);
 }

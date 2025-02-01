@@ -1,0 +1,10 @@
+->num
+->num
+->next->next->num
+->next->next->next->num
+->next->next->next->next->num
+->next->next->next->next->next->num
+->next->next->next->next->next->next->num
+->next->next->next->next->next->next->next->num
+->next->next->next->next->next->next->next->next->num
+->next->next->next->next->next->next->next->next->next->num
