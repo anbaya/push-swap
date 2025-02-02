@@ -27,34 +27,44 @@ int stack_size(t_stack *stack)
     }
     return (size);
 }
-t_stack *stack_init(int argc, char **argv, t_data **data)
+t_data	*stack_init(void)
 {
-    t_stack *stack;
+	t_data*stack;
+
+	stack = malloc(sizeof(t_data));
+	if (!stack)
+		return (NULL);
+	stack->stack = NULL;
+	stack->range = 0;
+	stack->tab = 0;
+	stack->min = 0;
+    stack->max = 0;
+	return (stack);
+}
+int input_to_stack(char **av, int ac, t_data **data)
+{
     t_stack *tmp;
     int i;
 
-    stack = malloc(sizeof(t_stack));
-    *data = malloc (sizeof(t_data));
-    if (!stack || !(*data))
-        return (NULL);
-    stack->num = ft_atoi(argv[0]);
-    (*data)->size = argc;
-    printf ("%d-----\n", ((*data)->size));
-    stack->next = NULL;
-    tmp = stack;
-    i = 1;
-    while (i < argc)
+    i = 2;
+    (*data)->stack = malloc(sizeof(t_stack));
+    if (!(*data)->stack)
+        return (0);
+    (*data)->stack->num = ft_atoi(av[1]);
+    (*data)->stack->next = NULL;
+    tmp = (*data)->stack;
+    while (av[i])
     {
         tmp->next = malloc(sizeof(t_stack));
         if (!tmp->next)
-            return (NULL);
+            return (0);
         tmp = tmp->next;
-        tmp->num = ft_atoi(argv[i]);
+        tmp->num = ft_atoi(av[i]);
         tmp->next = NULL;
         i++;
     }
-    get_arr(stack, data);
-    return (stack);
+    (*data)->size = ac;
+    get_arr((*data)->stack, data);
 }
 void print_stack(t_stack *stack)
 {
@@ -69,40 +79,40 @@ void print_stack(t_stack *stack)
 }
 int main(int argc, char **argv)
 {
-    t_stack *a;
-    t_stack *b;
-    t_data *data;
+    t_data *a;
+    t_data *b;
 
     if (argc < 2)
         return (0);
-    a = stack_init(argc - 1, argv + 1, &data);
-    b = stack_b_init(b, 1);
+    a = stack_init();
+    b = stack_init();
     if (!a || !b)
         return (0);
-    print_stack(a);
+    input_to_stack (argv , argc - 1, &a);
+    print_stack(a->stack);
     write (1, "----------\n", 11);
     printf("Array elements: ");
-    for (int i = 0; i < data->size; i++) {
-        printf("%d ", data->tab[i]);
+    for (int i = 0; i < a->size; i++) {
+        printf("%d ", a->tab[i]);
 }
-printf("\n"); // Optional: Add a newline for better formatting
-    if (is_sorted(a))
+    printf("\n"); // Optional: Add a newline for better formatting
+    if (is_sorted(a->stack))
     {
-        stack_free(a);
+        stack_free(a->stack);
         exit (0);
     }
-    else if (data->size == 2)
-        sa (&a);
-    else if (data->size == 3)
-        sort_three (&a);
-    else if (data->size == 4)
-        sort_four (&a, &b, data);
-    else if (data->size == 5)
-        sort_five (&a, &b, data);
+    else if (a->size == 2)
+        sa (&a->stack);
+    else if (a->size == 3)
+        sort_three (&a->stack);
+    else if (a->size == 4)
+        sort_four (&a->stack, &b->stack, a);
+    else if (a->size == 5)
+        sort_five (&a->stack, &b->stack, a);
     else
-        sort_chunks (&a, &(b->next), data);
-    print_stack(a);
-    stack_free(a);
-    stack_free(b);
+        sort_chunks (&a->stack, &b->stack, a);
+    print_stack(a->stack);
+    stack_free(a->stack);
+    stack_free(b->stack);
     return (0);
 }

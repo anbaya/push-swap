@@ -37,8 +37,8 @@ int	ft_max(t_stack *stack)
 	int		max;
 	t_stack	*tmp;
 
-	tmp = stack->next;
-	max = stack->next->num;
+	tmp = stack;
+	max = stack->num;
 	while (tmp)
 	{
 		if (max < tmp->num)

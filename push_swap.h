@@ -14,6 +14,7 @@ typedef struct s_stack
 
 typedef struct s_data
 {
+    t_stack *stack;
     int	size;
     int range;
     int min;
@@ -36,7 +37,7 @@ int rrb(t_stack **stack_b);
 int rrr(t_stack **stack_a, t_stack **stack_b);
 int is_sorted(t_stack *stack);
 int stack_size(t_stack *stack);
-t_stack *stack_init(int argc, char **argv, t_data **data);
+t_data	*stack_init(void);
 int stack_free(t_stack *stack);
 int ft_atoi(const char *str);
 void	sort_three(t_stack **a);
@@ -51,7 +52,7 @@ void    ft_lstadd_one(t_stack *stack, int num);
 t_stack	*ft_lstlast(t_stack *lst);
 int	ft_lstsize(t_stack *lst);
 int	ft_index(t_stack *stack, int num);
-int *tab_sort(t_stack *stack, t_data *data);
+void	get_arr(t_stack *stack, t_data **data);
 void    ft_lstdelone(t_stack **stack);
 t_stack *stack_b_init(t_stack *b, int argc);
 void	get_arr(t_stack *stack, t_data **data);

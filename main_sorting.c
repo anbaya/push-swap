@@ -8,10 +8,10 @@ void	push_max(t_stack **a, t_stack **b)
 	size = ft_lstsize(*b);
 	index = ft_index(*b, ft_max(*b));
 	if (index <= size / 2)
-		while ((*b)->next->num != ft_max(*b))
+		while ((*b)->num != ft_max(*b))
 			rb(b);
 	else
-		while ((*b)->next->num != ft_max(*b))
+		while ((*b)->num != ft_max(*b))
 			rrb(b);
 	pa(a, b);
 }
@@ -31,7 +31,7 @@ void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 {
 	data->range = set_range(*a, data);
 	data->size = ft_lstsize(*a);
-	while ((*a)->next)
+	while (*a)
 	{
 		if (is_it_here((*a)->num, data->tab, data->min, data->range))
 		{
@@ -51,7 +51,7 @@ void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 		else
 			ra(a);
 	}
-	while ((*b)->next)
+	while (*b)
 		push_max(a, b);
 }
 
