@@ -81,7 +81,7 @@ int main(int argc, char **argv)
     t_data *b;
     char **args;
 
-    if (argc < 2)
+    if (argc < 2 || !is_int(argv + 1))
         return (0);
     a = stack_init();
     b = stack_init();
@@ -89,7 +89,12 @@ int main(int argc, char **argv)
         return (0);
     args = args_filter(argv + 1);
     input_to_stack (args, argc - 2, &a);
-    free_args(args);
+    if (!checker(a))
+    {
+        free_args(args);
+        stack_free (a);
+        stack_free (a);
+    }
     printf("Array elements: ");
     for (int i = 0; i < a->size; i++) {
         printf("%d ", a->tab[i]);
@@ -111,6 +116,7 @@ int main(int argc, char **argv)
     else
         sort_chunks (&a->stack, &b->stack, a);
     print_stack(a->stack);
+    free_args(args);
     stack_free(a);
     stack_free(b);
     return (0);

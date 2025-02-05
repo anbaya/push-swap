@@ -14,19 +14,26 @@ int is_sorted(t_stack *stack)
     return (1);
 }
 
-int	is_int(char *s)
+int	is_int(char **s)
 {
 	int	i;
+	int j;
 
 	i = 0;
-	if (s[i] == '\0')
+	j = 0;
+	if (s[i][j] == '\0')
 		return (0);
-	if (s[i] == '-' || s[i] == '+')
-		i++;
 	while (s[i])
 	{
-		if (!(s[i] >= '0' && s[i] <= '9'))
-			return (0);
+		j = 0;
+		if (s[i][j] == '-' || s[i][j] == '+')
+			i++;
+		while (s[i][j])
+		{
+			if (!(s[i][j] >= '0' && s[i][j] <= '9'))
+				return (0);
+			j++;
+		}
 		i++;
 	}
 	return (1);
@@ -52,4 +59,15 @@ int	is_dup(t_data *stack)
 		i++;
 	}
 	return (0);
+}
+int checker(t_data *stack)
+{
+	int i;
+
+	i = 0;
+	if (is_dup(stack))
+		return (0);
+	if (is_sorted(stack->stack))
+		return (0);
+	return (1);
 }
