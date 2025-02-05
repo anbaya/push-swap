@@ -1,32 +1,5 @@
 #include "push_swap.h"
 
-int is_sorted(t_stack *stack)
-{
-    t_stack *tmp;
-
-    tmp = stack;
-    while (tmp->next)
-    {
-        if (tmp->num > tmp->next->num)
-            return (0);
-        tmp = tmp->next;
-    }
-    return (1);
-}
-int stack_size(t_stack *stack)
-{
-    int size;
-    t_stack *tmp;
-
-    size = 0;
-    tmp = stack;
-    while (tmp)
-    {
-        size++;
-        tmp = tmp->next;
-    }
-    return (size);
-}
 t_data	*stack_init(void)
 {
 	t_data*stack;
@@ -65,6 +38,7 @@ int input_to_stack(char **av, int ac, t_data **data)
     }
     (*data)->size = ac;
     get_arr((*data)->stack, data);
+    return (0);
 }
 void print_stack(t_stack *stack)
 {
@@ -77,10 +51,35 @@ void print_stack(t_stack *stack)
         tmp = tmp->next;
     }
 }
+
+char **args_filter(char **argv)
+{
+    int i;
+    char *tmp;
+    char *str;
+    char **args;
+
+    i = 0;
+    str = ft_strdup (argv[i]);
+    i++;
+    while (argv[i])
+    {
+        tmp = ft_strjoin(str, argv[i]);
+        free (str);
+        str = ft_strdup(tmp);
+        free (tmp);
+        i++;
+    }
+    args = ft_split(str, ' ');
+    free (str);
+    return (args);
+}
+
 int main(int argc, char **argv)
 {
     t_data *a;
     t_data *b;
+    char **args;
 
     if (argc < 2)
         return (0);
@@ -88,9 +87,9 @@ int main(int argc, char **argv)
     b = stack_init();
     if (!a || !b)
         return (0);
-    input_to_stack (argv , argc - 1, &a);
-    print_stack(a->stack);
-    write (1, "----------\n", 11);
+    args = args_filter(argv + 1);
+    input_to_stack (args, argc - 2, &a);
+    free_args(args);
     printf("Array elements: ");
     for (int i = 0; i < a->size; i++) {
         printf("%d ", a->tab[i]);
@@ -98,7 +97,7 @@ int main(int argc, char **argv)
     printf("\n"); // Optional: Add a newline for better formatting
     if (is_sorted(a->stack))
     {
-        stack_free(a->stack);
+        stack_free(a);
         exit (0);
     }
     else if (a->size == 2)
@@ -112,7 +111,7 @@ int main(int argc, char **argv)
     else
         sort_chunks (&a->stack, &b->stack, a);
     print_stack(a->stack);
-    stack_free(a->stack);
-    stack_free(b->stack);
+    stack_free(a);
+    stack_free(b);
     return (0);
 }

@@ -1,14 +1,21 @@
 #include "push_swap.h"
 
-int stack_free(t_stack *stack)
+int stack_free(t_data *data)
 {
-    t_stack *tmp;
+    if (!data)
+        return (0);
+    t_stack *current;
+    t_stack *next;
 
-    while (stack)
+    current = data->stack;
+    while (current)
     {
-        tmp = stack;
-        stack = stack->next;
-        free(tmp);
+        next = current->next;
+        free(current);
+        current = next;
     }
-    return (1);
+    if (data->tab)
+        free(data->tab);
+    free(data);
+    return (0);
 }

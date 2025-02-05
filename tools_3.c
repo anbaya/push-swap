@@ -31,4 +31,38 @@ int get_index(int num, int *tab)
         if (num == tab[i])
             return i;
     }
+	return (0);
+}
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int	i;
+	int	j;
+	int	size;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	size = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * size + 1);
+	if (!str)
+		return (NULL);
+	while (s1[j])
+		str[i++] = s1[j++];
+	j = 0;
+	str[i++] = ' ';
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
+	return (str);
+}
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
