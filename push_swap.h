@@ -67,5 +67,7 @@ t_stack *get_last(t_stack *stack);
 int is_it_here(int num, int *tab, int min, int max);
 int	ft_max(t_stack *stack);
 int	ft_min(t_stack *stack);
+void sort (t_data *a, t_data *b);
+void clean_exit(t_data *a, t_data *b, char **args);
 
 # endif

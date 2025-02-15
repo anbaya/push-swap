@@ -94,29 +94,11 @@ int main(int argc, char **argv)
     input_to_stack (args, argc - 1, &a);
     if (!checker(a))
     {
-        free_args(args);
-        stack_free (a);
-        stack_free (b);
+        clean_exit(a, b, args);
         exit(1);
     }
-    printf("Array elements: ");
-    for (int i = 0; i < a->size; i++) {
-        printf("%d ", a->tab[i]);
-    }
     printf("\n");
-    if (a->size == 2)
-        sa (&a->stack);
-    else if (a->size == 3)
-        sort_three (&a->stack);
-    else if (a->size == 4)
-        sort_four (&a->stack, &b->stack, a);
-    else if (a->size == 5)
-        sort_five (&a->stack, &b->stack, a);
-    else
-        sort_chunks (&a->stack, &b->stack, a);
-    print_stack(a->stack);
-    free_args(args);
-    stack_free(a);
-    stack_free(b);
+    sort(a,b);
+    clean_exit (a, b, args);
     return (0);
 }

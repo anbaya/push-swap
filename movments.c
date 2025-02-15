@@ -7,6 +7,7 @@ int sa(t_stack **stack_a)
     int tmp = (*stack_a)->num;
     (*stack_a)->num = (*stack_a)->next->num;
     (*stack_a)->next->num = tmp;
+    write (1, "sa\n", 3);
     return (0);
 }
 
@@ -17,6 +18,7 @@ int sb(t_stack **stack_b)
     int tmp = (*stack_b)->num;
     (*stack_b)->num = (*stack_b)->next->num;
     (*stack_b)->next->num = tmp;
+    write (1, "sb\n", 3);
     return (0);
 }
 
@@ -34,6 +36,7 @@ int pa(t_stack **stack_a, t_stack **stack_b)
     t_stack *tmp = *stack_b;
     *stack_b = (*stack_b)->next;
     ft_lstadd_front(stack_a, tmp);
+    write (1, "pa\n", 3);
     return (0);
 }
 
@@ -44,6 +47,7 @@ int pb(t_stack **stack_a, t_stack **stack_b)
     t_stack *tmp = *stack_a;
     *stack_a = (*stack_a)->next;
     ft_lstadd_front(stack_b, tmp);
+    write (1, "pb\n", 3);
     return (0);
 }
 
@@ -58,6 +62,7 @@ int ra(t_stack **stack_a)
     
     t_stack *last = get_last(*stack_a);
     last->next = tmp;
+    write (1, "ra\n", 3);
     return (0);
 }
 
@@ -72,6 +77,7 @@ int rb(t_stack **stack_b)
     
     t_stack *last = get_last(*stack_b);
     last->next = tmp;
+    write (1, "rb\n", 3);
     return (0);
 }
 
@@ -94,6 +100,7 @@ int rra(t_stack **stack_a)
     t_stack *last = tmp->next;  
     tmp->next = NULL;
     ft_lstadd_front(stack_a, last);
+    write (1, "rra\n", 4);
     return (0);
 }
 
@@ -109,12 +116,6 @@ int rrb(t_stack **stack_b)
     t_stack *last = tmp->next;  
     tmp->next = NULL;
     ft_lstadd_front(stack_b, last);
-    return (0);
-}
-
-int rrr(t_stack **stack_a, t_stack **stack_b)
-{
-    rra(stack_a);
-    rrb(stack_b);
+    write (1, "rrb\n", 4);
     return (0);
 }
