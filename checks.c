@@ -1,41 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 17:37:54 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 17:40:07 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int is_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    tmp = stack;
-    while (tmp->next)
-    {
-        if (tmp->num > tmp->next->num)
-            return (0);
-        tmp = tmp->next;
-    }
-    return (1);
+	tmp = stack;
+	while (tmp->next)
+	{
+		if (tmp->num > tmp->next->num)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
-int is_int(char **s)
+int	is_int(char **s)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    while (s[i])
-    {
-        j = 0;
-        if (s[i][j] == '-' || s[i][j] == '+')
-            j++;
-        if (s[i][j] == '\0') // Check for no digits after sign
-            return (0);
-        while (s[i][j])
-        {
-            if (!((s[i][j] >= '0' && s[i][j] <= '9') || s[i][j] != '"'))
-                return (0);
-            j++;
-        }
-        i++;
-    }
-    return (1);
+	i = 0;
+	while (s[i])
+	{
+		j = 0;
+		if (s[i][j] == '-' || s[i][j] == '+')
+			j++;
+		if (s[i][j] == '\0')
+			return (0);
+		while (s[i][j])
+		{
+			if (!((s[i][j] >= '0' && s[i][j] <= '9') || s[i][j] != '"'))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	is_dup(t_data *stack)
@@ -59,9 +71,10 @@ int	is_dup(t_data *stack)
 	}
 	return (0);
 }
-int checker(t_data *stack)
+
+int	checker(t_data *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (is_dup(stack))

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools_2.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 18:12:24 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 18:13:54 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_lstsize(t_stack *lst)
@@ -16,6 +28,7 @@ int	ft_lstsize(t_stack *lst)
 	}
 	return (i);
 }
+
 int	ft_index(t_stack *stack, int num)
 {
 	int		index;
@@ -32,6 +45,7 @@ int	ft_index(t_stack *stack, int num)
 	}
 	return (index);
 }
+
 int	ft_max(t_stack *stack)
 {
 	int		max;
@@ -47,6 +61,7 @@ int	ft_max(t_stack *stack)
 	}
 	return (max);
 }
+
 int	ft_min(t_stack *stack)
 {
 	int		min;
@@ -62,6 +77,7 @@ int	ft_min(t_stack *stack)
 	}
 	return (min);
 }
+
 t_stack	*ft_lstlast(t_stack *lst)
 {
 	t_stack	*tmp;

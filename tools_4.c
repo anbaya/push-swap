@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools_4.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 18:15:23 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 18:16:08 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	*ft_strdup(const char *s)
 {
-	int	i;
+	int		i;
 	char	*str;
 
 	i = 0;
@@ -20,18 +32,19 @@ char	*ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
-int free_args(char **args)
+
+int	free_args(char **args)
 {
-    if (!args) 
+	int	i;
+
+	if (!args)
 		return (0);
-	int i;
-	
 	i = 0;
-    while (args[i])
+	while (args[i])
 	{
-        free(args[i]);
+		free(args[i]);
 		i++;
-    }
-    free(args);
+	}
+	free(args);
 	return (0);
 }

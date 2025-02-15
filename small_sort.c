@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   small_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 18:17:28 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 18:18:23 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	cut_for_norm(t_stack **a, int index, t_stack *last)
@@ -20,6 +32,7 @@ void	cut_for_norm(t_stack **a, int index, t_stack *last)
 			rra(a);
 	}
 }
+
 void	sort_three(t_stack **a)
 {
 	int		index;
@@ -37,6 +50,7 @@ void	sort_three(t_stack **a)
 	else
 		cut_for_norm(a, index, last);
 }
+
 void	sort_four(t_stack **a, t_stack **b, t_data *data)
 {
 	int	index;
@@ -55,6 +69,7 @@ void	sort_four(t_stack **a, t_stack **b, t_data *data)
 	sort_three(a);
 	pa(a, b);
 }
+
 void	sort_five(t_stack **a, t_stack **b, t_data *data)
 {
 	int	index;

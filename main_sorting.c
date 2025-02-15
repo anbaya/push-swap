@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_sorting.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 17:45:39 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 17:46:12 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_max(t_stack **a, t_stack **b)
@@ -15,6 +27,7 @@ void	push_max(t_stack **a, t_stack **b)
 			rrb(b);
 	pa(a, b);
 }
+
 int	set_range(t_stack *stack, t_data *data)
 {
 	int	range;
@@ -27,6 +40,7 @@ int	set_range(t_stack *stack, t_data *data)
 		range = 40;
 	return (range);
 }
+
 void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 {
 	data->range = set_range(*a, data);
@@ -54,4 +68,3 @@ void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 	while (*b)
 		push_max(a, b);
 }
-

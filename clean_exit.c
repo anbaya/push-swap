@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_exit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 18:16:57 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 18:17:09 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void clean_exit(t_data *a, t_data *b, char **args)
+void	clean_exit(t_data *a, t_data *b, char **args)
 {
-    free_args(args);
-    stack_free(a);
-    stack_free(b);
+	free_args(args);
+	stack_free(a);
+	stack_free(b);
 }

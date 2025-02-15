@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/15 18:10:27 by anbaya            #+#    #+#             */
+/*   Updated: 2025/02/15 18:11:51 by anbaya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_atoi(const char *str)
@@ -27,13 +39,15 @@ int	ft_atoi(const char *str)
 	}
 	return ((int)(r * sign));
 }
-void	ft_lstadd_front(t_stack **lst,t_stack *new)
+
+void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
 	if (!lst || !new)
 		return ;
 	new->next = *lst;
 	*lst = new;
 }
+
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
 	t_stack	*p;
@@ -50,25 +64,26 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		p = p->next;
 	p->next = new;
 }
-void ft_lstadd_one(t_stack *stack, int num)
+
+void	ft_lstadd_one(t_stack *stack, int num)
 {
-	t_stack *new;
+	t_stack	*new;
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		return;
+		return ;
 	new->num = num;
 	new->next = NULL;
 	stack = new;
 }
-void ft_lstdelone(t_stack **stack)
+
+void	ft_lstdelone(t_stack **stack)
 {
-    t_stack *tmp;
+	t_stack	*tmp;
 
-    if (!stack || !*stack)
-        return;
-
-    tmp = *stack;
-    *stack = (*stack)->next;
-    free(tmp);
+	if (!stack || !*stack)
+		return ;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	free(tmp);
 }
