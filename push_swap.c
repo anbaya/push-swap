@@ -19,11 +19,11 @@ int input_to_stack(char **av, int ac, t_data **data)
     t_stack *tmp;
     int i;
 
-    i = 2;
+    i = 1;
     (*data)->stack = malloc(sizeof(t_stack));
     if (!(*data)->stack)
         return (0);
-    (*data)->stack->num = ft_atoi(av[1]);
+    (*data)->stack->num = ft_atoi(av[0]);
     (*data)->stack->next = NULL;
     tmp = (*data)->stack;
     while (av[i])
@@ -59,6 +59,8 @@ char **args_filter(char **argv)
     char *str;
     char **args;
 
+    if (!argv || !argv[0])
+        return NULL;
     i = 0;
     str = ft_strdup (argv[i]);
     i++;
@@ -66,8 +68,9 @@ char **args_filter(char **argv)
     {
         tmp = ft_strjoin(str, argv[i]);
         free (str);
-        str = ft_strdup(tmp);
-        free (tmp);
+        if (!tmp)
+            return (NULL);
+        str = tmp;
         i++;
     }
     args = ft_split(str, ' ');
@@ -88,24 +91,20 @@ int main(int argc, char **argv)
     if (!a || !b)
         return (0);
     args = args_filter(argv + 1);
-    input_to_stack (args, argc - 2, &a);
+    input_to_stack (args, argc - 1, &a);
     if (!checker(a))
     {
         free_args(args);
         stack_free (a);
-        stack_free (a);
+        stack_free (b);
+        exit(1);
     }
     printf("Array elements: ");
     for (int i = 0; i < a->size; i++) {
         printf("%d ", a->tab[i]);
-}
-    printf("\n"); // Optional: Add a newline for better formatting
-    if (is_sorted(a->stack))
-    {
-        stack_free(a);
-        exit (0);
     }
-    else if (a->size == 2)
+    printf("\n");
+    if (a->size == 2)
         sa (&a->stack);
     else if (a->size == 3)
         sort_three (&a->stack);

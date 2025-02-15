@@ -36,7 +36,7 @@ void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 		if (is_it_here((*a)->num, data->tab, data->min, data->range))
 		{
 			pb(a, b);
-			if (data->range <= data->size)
+			if (data->range < data->size)
 				data->range++;
 			data->min++;
 		}
@@ -44,7 +44,7 @@ void	sort_chunks(t_stack **a, t_stack **b, t_data *data)
 		{
 			pb(a, b);
 			rb(b);
-			if (data->range <= data->size)
+			if (data->range < data->size)
 				data->range++;
 			data->min++;
 		}

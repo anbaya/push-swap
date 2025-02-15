@@ -13,7 +13,7 @@ int is_it_here(int num, int *tab, int min, int max)
     int i;
 
     i = min;
-    while (i <= max)
+    while (i < max)
     {
         if (tab[i] == num)
             return (1);
@@ -45,7 +45,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	size = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(char) * size + 1);
+	str = malloc(sizeof(char) * size + 2);
 	if (!str)
 		return (NULL);
 	while (s1[j])

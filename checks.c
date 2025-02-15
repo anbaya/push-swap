@@ -14,29 +14,28 @@ int is_sorted(t_stack *stack)
     return (1);
 }
 
-int	is_int(char **s)
+int is_int(char **s)
 {
-	int	i;
-	int j;
+    int i;
+    int j;
 
-	i = 0;
-	j = 0;
-	if (s[i][j] == '\0')
-		return (0);
-	while (s[i])
-	{
-		j = 0;
-		if (s[i][j] == '-' || s[i][j] == '+')
-			i++;
-		while (s[i][j])
-		{
-			if (!(s[i][j] >= '0' && s[i][j] <= '9'))
-				return (0);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+    i = 0;
+    while (s[i])
+    {
+        j = 0;
+        if (s[i][j] == '-' || s[i][j] == '+')
+            j++;
+        if (s[i][j] == '\0') // Check for no digits after sign
+            return (0);
+        while (s[i][j])
+        {
+            if (!((s[i][j] >= '0' && s[i][j] <= '9') || s[i][j] != '"'))
+                return (0);
+            j++;
+        }
+        i++;
+    }
+    return (1);
 }
 
 int	is_dup(t_data *stack)
