@@ -14,8 +14,8 @@
 
 char	*ft_substr(char const *s, int start, int len)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*sub;
 
 	i = (int)start;
@@ -40,8 +40,8 @@ char	*ft_substr(char const *s, int start, int len)
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*r;
 
 	r = (char *)s;

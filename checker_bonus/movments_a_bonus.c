@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movments_a.c                                       :+:      :+:    :+:   */
+/*   movments_a_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anbaya <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:53:08 by anbaya            #+#    #+#             */
-/*   Updated: 2025/02/15 17:53:45 by anbaya           ###   ########.fr       */
+/*   Updated: 2025/02/18 00:18:00 by anbaya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ int	rra(t_stack **stack_a)
 		tmp = tmp->next;
 	last = tmp->next;
 	tmp->next = NULL;
-	ft_lstadd_front(stack_a, last);;
+	ft_lstadd_front(stack_a, last);
 	return (0);
 }
