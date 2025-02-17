@@ -27,19 +27,27 @@ int cmp(char *line, t_data *a, t_data *b, char **args)
 	else if (!ft_strncmp("rrr", line, 3) && (line[3] == '\n'))
 		rrr(&a->stack, &b->stack);
 	else
-		return (perror ("error"), clean_exit (a, b, args), 0);
+		return (perror ("error"), free(get_next_line(0)), -1);
 }
 
 int check(t_data *a, t_data *b, char **args)
 {
     char *line;
+	int i;
     
-    while (1)
+    i = 0;
+	while (1)
     {
-        get_next_line(2);
+        line = get_next_line(0);
         if (!line)
             break;
-        cmp(line, a, b, args);
+        i = cmp(line, a, b, args);
+		if (i == -1)
+		{
+			clean_exit (a, b, args);
+			free (line);
+			exit (1);
+		}
         free (line);
     }
     if (is_sorted(a->stack) && !b->stack)
