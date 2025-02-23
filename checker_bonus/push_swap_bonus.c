@@ -98,7 +98,7 @@ int	main(int argc, char **argv)
 	t_data	*b;
 	char	**args;
 
-	if (argc < 2 || !is_int(argv + 1))
+	if (argc < 2)
 		return (0);
 	a = stack_init();
 	b = stack_init();
@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 		return (0);
 	args = args_filter(argv + 1);
 	input_to_stack(args, argc - 1, &a);
-	if (!checker(a))
+	if (!checker(a) || !is_int(argv + 1))
 	{
 		clean_exit(a, b, args);
 		exit(1);

@@ -41,8 +41,9 @@ int	is_int(char **s)
 			return (0);
 		while (s[i][j])
 		{
-			if (!((s[i][j] >= '0' && s[i][j] <= '9') || s[i][j] != '"'))
-				return (0);
+			if (!(s[i][j] >= '0' && s[i][j] <= '9'))
+				if (s[i][j] != '"')
+					return (0);
 			j++;
 		}
 		i++;
