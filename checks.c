@@ -26,6 +26,20 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
+int	is_max(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		if (ft_atoi(args[i]) > 2147483647 || ft_atoi(args[i]) < -2147483648)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	is_int(char **s)
 {
 	int	i;
@@ -42,8 +56,7 @@ int	is_int(char **s)
 		while (s[i][j])
 		{
 			if (!(s[i][j] >= '0' && s[i][j] <= '9'))
-				if (s[i][j] != '"')
-					return (0);
+				return (0);
 			j++;
 		}
 		i++;
@@ -73,12 +86,12 @@ int	is_dup(t_data *stack)
 	return (0);
 }
 
-int	checker(t_data *stack)
+int	checker(t_data *stack, char **args)
 {
 	int	i;
 
 	i = 0;
-	if (is_dup(stack))
+	if (is_dup(stack) || is_max(args))
 		return (0);
 	if (is_sorted(stack->stack))
 		return (0);

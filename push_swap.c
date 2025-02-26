@@ -12,6 +12,16 @@
 
 #include "push_swap.h"
 
+int	count_size(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	return (i);
+}
+
 t_data	*stack_init(void)
 {
 	t_data	*stack;
@@ -49,21 +59,9 @@ int	input_to_stack(char **av, int ac, t_data **data)
 		tmp->next = NULL;
 		i++;
 	}
-	(*data)->size = ac;
+	(*data)->size = count_size(av);
 	get_arr((*data)->stack, data);
 	return (0);
-}
-
-void	print_stack(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%d\n", tmp->num);
-		tmp = tmp->next;
-	}
 }
 
 char	**args_filter(char **argv)
@@ -73,8 +71,11 @@ char	**args_filter(char **argv)
 	char	*str;
 	char	**args;
 
-	if (!argv || !argv[0])
+	if (!argv[0] || !argv[0][0])
+	{
+		write(2, "Error\n", 7);
 		return (NULL);
+	}
 	i = 0;
 	str = ft_strdup(argv[i]);
 	i++;
@@ -98,16 +99,19 @@ int	main(int argc, char **argv)
 	t_data	*b;
 	char	**args;
 
-	if (argc < 2)
+	if (argc < 3)
 		return (0);
 	a = stack_init();
 	b = stack_init();
 	if (!a || !b)
 		return (0);
 	args = args_filter(argv + 1);
+	if (args == NULL)
+		return (1);
 	input_to_stack(args, argc - 1, &a);
-	if (!checker(a) || !is_int(args))
+	if (!checker(a, args) || !is_int(args))
 	{
+		write(2, "Error\n", 6);
 		clean_exit(a, b, args);
 		exit(1);
 	}

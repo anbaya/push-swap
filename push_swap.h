@@ -72,7 +72,7 @@ void				get_arr(t_stack *stack, t_data **data);
 void				ft_lstdelone(t_stack **stack);
 t_stack				*stack_b_init(t_stack *b, int argc);
 void				get_arr(t_stack *stack, t_data **data);
-int					checker(t_data *stack);
+int					checker(t_data *stack, char **args);
 t_stack				*get_last(t_stack *stack);
 int					is_it_here(int num, int *tab, int min, int max);
 int					ft_max(t_stack *stack);
