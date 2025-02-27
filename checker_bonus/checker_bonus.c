@@ -39,6 +39,7 @@ int	cmp(char *line, t_data *a, t_data *b, char **args)
 		rrr(&a->stack, &b->stack);
 	else
 		return (perror("error"), free(get_next_line(0)), -1);
+	return (0);
 }
 
 int	check(t_data *a, t_data *b, char **args)

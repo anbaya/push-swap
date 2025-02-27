@@ -83,7 +83,7 @@ char	**args_filter(char **argv)
 	{
 		tmp = ft_strjoin(str, argv[i]);
 		free(str);
-		if (!tmp)
+		if (!tmp || !argv[i][0])
 			return (NULL);
 		str = tmp;
 		i++;
